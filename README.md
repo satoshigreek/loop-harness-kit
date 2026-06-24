@@ -2,6 +2,8 @@
 
 **A point-your-LLM-at-it reference for loop, harness, and environment engineering.**
 
+🌐 **Website:** [satoshigreek.github.io/loop-harness-kit](https://satoshigreek.github.io/loop-harness-kit/) — a UML diagram for every research paper behind the kit.
+
 This repo exists for one purpose: you give an LLM agent (Claude Code, Codex, Cursor, etc.)
 a link to this repository — or drop it into the agent's context — and its performance on
 real, multi-step work goes up. It does that by encoding the things a model *can't* reliably
