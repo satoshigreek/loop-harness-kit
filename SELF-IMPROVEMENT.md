@@ -66,6 +66,10 @@ Priority order:
 ### 5. Apply + handoff
 - Make the edits on a branch `weekly/<YYYY-MM-DD>`.
 - Add every new source to `references.md` under the right section.
+- **Update the website** — if a change adds a **research paper** (has an arXiv/preprint ID),
+  add a matching UML card to `index.html`. Follow [Website maintenance](#website-maintenance)
+  exactly: copy the card template, write a real mechanism diagram, drop it in the right
+  category block, bump the paper count, and confirm the page still renders.
 - Append a dated entry to [`CHANGELOG.md`](CHANGELOG.md) listing each change + its source.
 - Bump `last_updated` in this file's front matter.
 - Open a PR titled `Weekly refresh <YYYY-MM-DD>` whose body is the ranked change set with
@@ -76,6 +80,75 @@ Priority order:
   one-line "no changes this week" note to `CHANGELOG.md` and close. (Don't loop for its own
   sake — `AGENTS.md` §1.)
 
+## Website maintenance
+
+The public site is a **single self-contained file: `index.html`** (deployed via GitHub Pages
+at <https://satoshigreek.github.io/loop-harness-kit/>). It has a "Research library" with one
+**UML card per research paper**, grouped into category blocks. Keep it in lockstep with
+`references.md`: **every paper that gets a card in `references.md` should get a card here too.**
+
+### When to add a card
+Add a card only for a **research paper** — something with an arXiv or preprint ID. Lab essays
+and blog posts (Anthropic/OpenAI engineering posts, registries) stay in `references.md` and the
+footer; they do **not** get UML cards.
+
+### How to add a card
+1. Pick the category. Each `<div class="catblock" data-cat="...">` already exists; insert the
+   new `<article>` inside that block's `<div class="grid">`. Category → `data-cat` → colour var:
+
+   | Category | `data-cat` | tag colour var | filter button already present |
+   |---|---|---|---|
+   | Harness foundations | `harness` | `--c-harness` | yes |
+   | Environment | `env` | `--c-env` | yes |
+   | Agent loop | `loop` | `--c-loop` | yes |
+   | Self-improvement | `improve` | `--c-improve` | yes |
+   | Tool design | `tool` | `--c-tool` | yes |
+   | Planning | `plan` | `--c-plan` | yes |
+   | Context | `context` | `--c-context` | yes |
+   | Safety | `safety` | `--c-safety` | yes |
+   | Loop patterns | `pattern` | `--c-pattern` | yes |
+
+   If a genuinely new category is needed, add a new `catblock` **and** a matching
+   `<button data-f="...">` in `#filters` — the filter JS keys off `data-cat`/`data-f`.
+
+2. Copy this template verbatim and fill the five slots. The diagram must capture the paper's
+   **actual mechanism** (4–7 nodes), not a generic shape — that is the whole point of the card.
+
+   ```html
+   <article class="paper">
+     <div class="ptop"><span class="tag" style="background:var(--CATEGORY_COLOR_VAR)">CATEGORY LABEL</span><a class="aid" href="ARXIV_URL">arXiv:XXXX.XXXXX</a></div>
+     <h4>PAPER TITLE</h4>
+     <p class="what">One-sentence what/why.</p>
+     <div class="mermaid">
+   flowchart TD
+     A["step"] --> B["step"]
+     </div>
+     <p class="take"><b>Takeaway:</b> the one lever to remember.</p>
+   </article>
+   ```
+
+3. **Bump the paper count** in the hero stat (`<div class="n">29</div>` → next number) and the
+   library intro ("browse all nine" categories — update only if the category count changes).
+
+### Mermaid rules (so it renders, not errors)
+- Wrap every node label in **double quotes**: `A["Plan step"]`. Use `<br/>` for line breaks.
+- Avoid raw parentheses in labels except the circle syntax `X(("text"))` / `Y((("text")))`.
+- Avoid raw `&`, `>`, `<` inside labels — spell them out or use `and`, `to`.
+- Prefer `flowchart TD/LR`, `sequenceDiagram`, or `stateDiagram-v2` (matches existing cards).
+
+### Verify before opening the PR (the website's eval gate)
+Render the page and confirm **every** `.mermaid` produced an `<svg>` with **no** syntax error.
+If preview tooling is available, serve the folder and run:
+```js
+const total = document.querySelectorAll('.mermaid').length;
+const svg   = document.querySelectorAll('.mermaid svg').length;
+const errs  = document.querySelectorAll('.mermaid svg [class*="error"]').length;
+// PASS only if svg === total && errs === 0
+```
+If preview tooling is **not** available (headless cron), at minimum lint each new diagram's
+syntax against the rules above and diff-check that the card was inserted inside a valid
+`grid`/`catblock`. Never open the PR with a card that hasn't been syntax-checked.
+
 ## Automation
 A scheduled cloud agent (a Claude Code *routine*) runs this protocol weekly. To create or edit
 it, use the `/schedule` command in Claude Code, or recreate it with this prompt:
@@ -84,8 +157,11 @@ it, use the `/schedule` command in Claude Code, or recreate it with this prompt:
 > **Prompt:** "Execute the SELF-IMPROVEMENT.md protocol in the repo
 > github.com/satoshigreek/loop-harness-kit: scan the authoritative lab sources for material
 > published in the last week, diff it against the current docs, gate candidates through the
-> evals, apply up to 5 ranked changes on a `weekly/<date>` branch, update references.md and
-> CHANGELOG.md, and open a PR. Make no changes if nothing passes the evals."
+> evals, apply up to 5 ranked changes on a `weekly/<date>` branch. Update references.md and
+> CHANGELOG.md, and — for any change that adds a research paper (arXiv/preprint) — add a
+> matching UML card to index.html per the Website maintenance section (real mechanism diagram,
+> bump the paper count, verify all mermaid diagrams still render). Then open a PR. Make no
+> changes if nothing passes the evals."
 
 The agent should clone the repo, follow this file exactly, and open a PR for human review
 (reviewed-loop trust level). Promote to deeper automation only once the eval gate has proven
