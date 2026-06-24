@@ -61,6 +61,21 @@ Tool design *is* agent UX (Anthropic, *Writing Effective Tools for Agents*). Pri
 - **Constrain topology, not just availability.** *How* tools chain and branch (`TopoCurate`,
   arXiv:2603.01714) matters as much as which tools exist.
 
+### Advanced tool use (now GA on the Claude Developer Platform)
+
+Three first-party primitives turn tool design from "list every tool" into a context-aware
+discipline (Anthropic, *Introducing advanced tool use*). Each ships with a measured win:
+
+| Primitive | What it does | Measured effect |
+|---|---|---|
+| **Tool Search** | Claude discovers tools on demand instead of loading all definitions upfront | **−85% tool-definition tokens**; Opus 4.5 tool accuracy **79.5% → 88.1%** |
+| **Programmatic Tool Calling** | Claude orchestrates tools by writing code; intermediate results stay out of context | **−37% tokens** on complex research (43,588 → 27,297); powers Claude for Excel over thousands of rows |
+| **Tool Use Examples** | Sample invocations inside the tool definition show real parameter usage JSON Schema can't | accuracy **72% → 90%** on complex parameter handling |
+
+The unifying problem they solve: *intermediate results pile up in context*. Pair them with the
+memory tool (write context to files for cross-session learning) and context editing/trimming
+(see [`03-context-engineering.md`](03-context-engineering.md)).
+
 ### Think in code (collapse tool-call overhead)
 
 When tool calls multiply, wrap multi-step interaction in **code execution** rather than

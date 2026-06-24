@@ -74,11 +74,16 @@ June 2026.
   <https://claude.com/blog/introducing-dynamic-workflows-in-claude-code>
 - *Building more with GPT-5.1-Codex-Max* (compaction over long horizons, multi-hour agent
   loops) — OpenAI. <https://openai.com/index/gpt-5-1-codex-max/>
+- *Code as Agent Harness* (Plan-Execute-Verify; deterministic sensors; accept / revise /
+  escalate / rollback gates) — arXiv:2605.18747. <https://arxiv.org/abs/2605.18747>
 
 ## §Harness Engineering / Design Primitives
 
 - *Writing Effective Tools for Agents* — Anthropic.
   <https://www.anthropic.com/engineering/writing-effective-tools-for-agents>
+- *Introducing advanced tool use on the Claude Developer Platform* (Tool Search −85% tokens;
+  Programmatic Tool Calling −37%; Tool Use Examples 72% → 90%) — Anthropic.
+  <https://www.anthropic.com/engineering/advanced-tool-use>
 - *Tool Annotations as Risk Vocabulary* (lethal trifecta) — MCP.
   <https://blog.modelcontextprotocol.io/posts/2026-03-16-tool-annotations/>
 - *TopoCurate: Modeling Interaction Topology…* — arXiv:2603.01714.
@@ -102,6 +107,11 @@ June 2026.
 
 ## §Self-Improvement
 
+- *Agentic Harness Engineering: Observability-Driven Automatic Evolution of Coding-Agent
+  Harnesses* (component/experience/decision observability; edits as falsifiable contracts;
+  Terminal-Bench 2 69.7% → 77.0%) — arXiv:2604.25850. <https://arxiv.org/abs/2604.25850>
+- *Harness-Bench: Measuring Harness Effects across Models in Realistic Agent Workflows* —
+  arXiv:2605.27922. <https://arxiv.org/abs/2605.27922>
 - *Build an Agent Improvement Loop with Traces, Evals, and Codex* — OpenAI cookbook.
   <https://developers.openai.com/cookbook/examples/agents_sdk/agent_improvement_loop>
 - *The next evolution of the Agents SDK* — OpenAI.

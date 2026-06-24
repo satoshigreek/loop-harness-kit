@@ -55,6 +55,10 @@ that **the harness, not the model, is the primary performance lever**:
   benchmarks by 5+ percentage points**.
 - `statewright` took a local model from **2/10 to 10/10** on a SWE-bench subset purely by
   shrinking the legal tool space per phase.
+- *Harness-Bench* (arXiv:2605.27922) formalizes the **binding-constraint thesis**: in
+  realistic agent workflows a benchmark score measures "not only what the model can infer, but
+  what the harness enables it to observe, modify, recover from, and verify" — so for
+  long-horizon tasks, variance is driven as much by the harness as by the model.
 
 A useful constitutive test (*"What makes a harness a harness"*, arXiv:2606.10106): a true
 harness has **four necessary and sufficient elements** — an agent loop, a tool interface,
