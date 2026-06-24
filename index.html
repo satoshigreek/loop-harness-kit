@@ -69,7 +69,7 @@
   .catblock>h3{font-size:16px;margin:0 0 4px;display:flex;align-items:center;gap:10px;}
   .catblock>h3 .bar{width:26px;height:3px;border-radius:2px;}
   .catblock>.cdesc{color:var(--muted);font-size:13.5px;margin:0 0 16px;max-width:760px;}
-  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;grid-auto-flow:row dense;}
   @media(max-width:820px){.grid{grid-template-columns:1fr;}}
   .paper{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 17px;display:flex;flex-direction:column;}
   .paper:hover{border-color:#3a4150;}
@@ -83,6 +83,19 @@
   .paper .mermaid svg{max-width:100%;height:auto;}
   .paper .take{margin:0;font-size:12.5px;color:var(--text);border-top:1px solid var(--border);padding-top:10px;}
   .paper .take b{color:var(--accent);}
+
+  /* landscape diagrams span a full row: text left, diagram right */
+  .paper.wide{grid-column:1 / -1;display:grid;grid-template-columns:minmax(240px,300px) 1fr;grid-template-rows:auto auto auto 1fr;column-gap:26px;}
+  .paper.wide .ptop{grid-column:1;grid-row:1;}
+  .paper.wide h4{grid-column:1;grid-row:2;}
+  .paper.wide .what{grid-column:1;grid-row:3;}
+  .paper.wide .take{grid-column:1;grid-row:4;align-self:end;border-top:none;padding-top:6px;}
+  .paper.wide .mermaid{grid-column:2;grid-row:1 / -1;margin:0;align-self:center;width:100%;}
+  @media(max-width:820px){
+    .paper.wide{display:flex;}
+    .paper.wide .mermaid{margin:auto 0 12px;}
+    .paper.wide .take{border-top:1px solid var(--border);padding-top:10px;}
+  }
 
   footer{border-top:1px solid var(--border);margin-top:20px;}
   .foot{max-width:1180px;margin:0 auto;padding:40px 22px;color:var(--muted);font-size:13.5px;display:flex;gap:30px;flex-wrap:wrap;justify-content:space-between;}
@@ -754,7 +767,7 @@ then follow its loop-selection procedure and failure-mode checklist for this ses
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
   mermaid.initialize({
-    startOnLoad: true,
+    startOnLoad: false,
     securityLevel: 'loose',
     theme: 'base',
     themeVariables: {
@@ -769,6 +782,17 @@ then follow its loop-selection procedure and failure-mode checklist for this ses
       fontSize: '12px'
     },
     flowchart: { curve: 'basis', htmlLabels: true }
+  });
+
+  // render all diagrams, then promote landscape ones to a full-width row
+  await mermaid.run();
+  const WIDE_RATIO = 1.8;
+  document.querySelectorAll('.paper').forEach(card => {
+    const svg = card.querySelector('.mermaid svg');
+    if (!svg) return;
+    const vb = svg.viewBox && svg.viewBox.baseVal;
+    const w = vb && vb.width, h = vb && vb.height;
+    if (w && h && (w / h) >= WIDE_RATIO) card.classList.add('wide');
   });
 
   // ---- category filter ----
