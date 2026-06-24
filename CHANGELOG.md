@@ -3,6 +3,28 @@
 All notable changes to this kit. Each entry cites the authoritative source behind it.
 Maintained via [`SELF-IMPROVEMENT.md`](SELF-IMPROVEMENT.md).
 
+## 2026-06-24 — Weekly refresh (cycle #1)
+
+First run of the [`SELF-IMPROVEMENT.md`](SELF-IMPROVEMENT.md) protocol. Scanned Anthropic /
+OpenAI / arXiv; 4 candidates passed the eval gate (authority + freshness + non-regression +
+link integrity). Every arXiv title was verified against the abstract before citing.
+
+### Added
+- **`docs/02` — Advanced tool use (GA)**: Tool Search (**−85%** tool-def tokens; Opus 4.5
+  accuracy 79.5% → 88.1%), Programmatic Tool Calling (**−37%** tokens; powers Claude for
+  Excel), Tool Use Examples (72% → 90%). Source: Anthropic, *Introducing advanced tool use*.
+- **`docs/08` — research backing for the flywheel**: the three observability pillars
+  (component / experience / decision) and "each edit is a falsifiable contract"; Terminal-Bench
+  2 **69.7% → 77.0%**; *factual harness structure transfers, prose-level strategy does not*.
+  Source: *Agentic Harness Engineering*, arXiv:2604.25850. Plus harness-aware measurement from
+  *Harness-Bench*, arXiv:2605.27922.
+- **`docs/00` — binding-constraint thesis** formalized via *Harness-Bench* (arXiv:2605.27922).
+- **`docs/01` — graded verify outcomes**: Plan-Execute-Verify with accept / revise / escalate
+  / rollback and deterministic sensors. Source: *Code as Agent Harness*, arXiv:2605.18747.
+
+### Changed
+- `references.md` — added the four sources under §Self-Improvement, §Harness, §Agent Loop.
+
 ## 2026-06-24 — Authoritative refresh #1
 
 Dogfooded the kit's own research → ground → revise discipline; folded in the latest

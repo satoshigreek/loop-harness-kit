@@ -62,6 +62,26 @@ extended-thinking tokens.
 > Practical: if your harness supports a per-turn thinking budget, spend it at plan and verify,
 > not on every routine tool call.
 
+## The verify stage has more than two outcomes
+
+Treat verification as a graded decision, not a pass/fail. *Code as Agent Harness*
+(arXiv:2605.18747) frames the loop as **Plan → Execute → Verify**, where execution applies
+changes inside a **sandboxed, permissioned** environment and verification uses **deterministic
+sensors** (tests, type checks, linters) plus human-review gates to decide whether the new state
+should be **accepted, revised, escalated, or rolled back**:
+
+| Verdict | When | Next |
+|---|---|---|
+| **Accept** | sensors pass, within scope | commit / advance |
+| **Revise** | minor, self-correctable failure | loop again with the failure as input |
+| **Escalate** | ambiguous or judgment call | hand to a human / stronger model |
+| **Rollback** | unsafe or off-track | revert to the last good state |
+
+The rollback path depends on the state being **revertible** — which is why durable checkpoints
+([`07-lifecycle-and-artifacts.md`](07-lifecycle-and-artifacts.md)) and revertible, file-level
+harness components matter. A loop that can only accept-or-retry will push bad state forward;
+one that can roll back contains the blast radius.
+
 ## Termination is a first-class design problem
 
 The most common loop failure is **not terminating well** — either running away (cost compounds,

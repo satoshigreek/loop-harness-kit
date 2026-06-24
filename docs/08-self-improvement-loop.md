@@ -52,6 +52,31 @@ Write a developer-facing handoff (e.g. `codex_handoff.md`) carrying the diagnosi
 recommendations, evidence, and implementation guidance an implementing agent needs to make the
 change.
 
+## The research backs the flywheel
+
+This isn't just a vendor pattern — it's now a measured result. *Agentic Harness Engineering*
+(arXiv:2604.25850) runs exactly this loop autonomously over three **observability pillars**:
+
+- **Component observability** — every editable harness component has a file-level
+  representation, so the action space is explicit and **revertible**.
+- **Experience observability** — trajectory data is distilled into a layered, drill-down
+  evidence corpus the evolving agent can actually consume (the "traces + feedback" stages).
+- **Decision observability** — **each edit is paired with a self-declared prediction, later
+  verified against the next round's outcome.** This turns every change into a *falsifiable
+  contract*, so evolution proceeds without collapsing into trial-and-error.
+
+That last point is the rigorous form of the **validation gate**: don't just propose a change —
+predict its effect and check the prediction next cycle. Results: Terminal-Bench 2 Pass@1
+**69.7% → 77.0%** over ten iterations (beating the human-designed Codex-CLI at 71.9%), with
+**+5.1 to +10.1 pp** gains transferring across three other model families. The ablation is the
+key lesson: **factual harness structure transfers; prose-level strategy does not** — gains come
+from tools, middleware, and memory, *not* from rewording the system prompt. Optimize structure,
+not vibes.
+
+And because harness scores are confounded with the harness itself, measure on a harness-aware
+benchmark: *Harness-Bench* (arXiv:2605.27922) shows a score reflects "not only what the model
+can infer, but what the harness enables it to observe, modify, recover from, and verify."
+
 ## Two trust levels
 
 | Level | Flow | Use when |
