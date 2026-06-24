@@ -1,3 +1,10 @@
+---
+last_updated: 2026-06-24
+owner: satoshigreek
+scope: LLM-facing operating manual for loop / harness / environment engineering
+reviewed_by: Claude (Opus 4.8)
+---
+
 # AGENTS.md — Operating Manual
 
 > You are an LLM agent. This file is written **for you**. Read it before you start
@@ -171,3 +178,16 @@ Use durable artifacts as harness state (templates in `templates/`):
   make incremental progress gated by tests/commits. Naïve restarts lose accumulated progress.
 
 Full lifecycle: `docs/07-lifecycle-and-artifacts.md`.
+
+---
+
+## 9. Improve over time (the flywheel)
+
+A harness should get *better*, not just run. Close the loop:
+**traces → feedback → evals → validation gate → optimize → handoff.** Capture what real runs
+did, let humans and a critic annotate them, codify the lessons as **reusable evals** that act
+as regression gates, then implement ranked improvements to the *whole harness* (instructions,
+tool policies, output requirements, checks) — not just the prompt. Start with a **reviewed
+loop** (human approves changes); earn **deeper automation** only once the eval gate has proven
+it catches regressions. Detail: `docs/08-self-improvement-loop.md`. This repo maintains itself
+on exactly this loop — see `SELF-IMPROVEMENT.md`.

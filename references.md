@@ -35,6 +35,11 @@ June 2026.
   <https://martinfowler.com/articles/exploring-gen-ai/harness-engineering.html>
 - *The Anatomy of an Agent Harness* — LangChain.
   <https://blog.langchain.com/the-anatomy-of-an-agent-harness/>
+- *Scaling Managed Agents: Decoupling the brain from the hands* (session vs. harness, stable
+  interfaces, p95 TTFT −90%) — Anthropic.
+  <https://www.anthropic.com/engineering/managed-agents>
+- *Equipping agents for the real world with Agent Skills* — Anthropic.
+  <https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills>
 - *What makes a harness a harness* — arXiv:2606.10106. <https://arxiv.org/abs/2606.10106>
 - *Architectural Design Decisions in AI Agent Harnesses* — arXiv:2604.18071.
   <https://arxiv.org/abs/2604.18071>
@@ -67,6 +72,8 @@ June 2026.
   <https://arxiv.org/abs/2604.14228>
 - *Introducing dynamic workflows in Claude Code* — Anthropic.
   <https://claude.com/blog/introducing-dynamic-workflows-in-claude-code>
+- *Building more with GPT-5.1-Codex-Max* (compaction over long horizons, multi-hour agent
+  loops) — OpenAI. <https://openai.com/index/gpt-5-1-codex-max/>
 
 ## §Harness Engineering / Design Primitives
 
@@ -93,9 +100,20 @@ June 2026.
 - *Code Execution with MCP* (98.7% token reduction) — Anthropic.
   <https://www.anthropic.com/engineering/code-execution-with-mcp>
 
+## §Self-Improvement
+
+- *Build an Agent Improvement Loop with Traces, Evals, and Codex* — OpenAI cookbook.
+  <https://developers.openai.com/cookbook/examples/agents_sdk/agent_improvement_loop>
+- *The next evolution of the Agents SDK* — OpenAI.
+  <https://openai.com/index/the-next-evolution-of-the-agents-sdk/>
+- *Demystifying Evals for AI Agents* — Anthropic.
+  <https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents>
+
 ## §Context Engineering
 
-- *Effective Context Engineering for AI Agents* — Anthropic.
+- *Effective Context Engineering for AI Agents* (compaction, structured note-taking,
+  sub-agents, just-in-time & hybrid retrieval, tool-result clearing, attention budget) —
+  Anthropic.
   <https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents>
 - *Compaction* — Claude API docs.
   <https://platform.claude.com/docs/en/build-with-claude/compaction>

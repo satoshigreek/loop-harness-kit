@@ -18,6 +18,33 @@ Applied to Claude Code, Codex CLI, Aider, Cline, OpenHands, and SWE-agent, all f
 are present. A system missing one is a generator, a guardrail, or a plain tool wrapper. Use
 this as an inclusion test when evaluating any "agent framework."
 
+## Decouple the brain from the hands (stable interfaces)
+
+Anthropic's *Scaling Managed Agents* gives the sharpest architectural pattern for durable
+harnesses: **separate the reasoning ("brain") from the execution environments ("hands") and
+the session log** — the way operating systems virtualized hardware behind stable abstractions,
+so implementations can change while interfaces stay constant.
+
+- **The session is not the context window.** It's a durable, append-only event log stored
+  *outside* the model's context, which the harness interrogates (e.g. `getEvents()`). The
+  harness then performs arbitrary context transformations (compaction, trimming, cache
+  organization) on top. Because the two are decoupled, a future harness can change its context
+  strategy without breaking the session contract.
+- **Each "hand" is a tool** with a uniform signature like `execute(name, input) → string`;
+  credentials live in vaults/proxies outside the sandbox.
+- **Stateless recovery:** `wake(sessionId)` / `getSession()` let a harness resume after a
+  crash — the backbone of long-horizon and hibernate-and-wake work
+  ([`07-lifecycle-and-artifacts.md`](07-lifecycle-and-artifacts.md)).
+
+The payoff is concrete: decoupling cut **p50 time-to-first-token ~60%** and **p95 >90%**.
+
+**Why stable interfaces matter — the expiry principle, made concrete.** A harness "encodes
+assumptions about what the model can't do," and those assumptions go stale. Anthropic's own
+example: Claude Sonnet 4.5 showed *context anxiety* (wrapping up tasks prematurely), so
+engineers added context resets — which became **dead weight** with Claude Opus 4.5, where the
+behavior had vanished. Keep such workarounds behind a stable interface so you can delete them
+without churning the rest of the system. Treat every piece of scaffolding as removable.
+
 ## Design primitives, organized by the problem they solve
 
 ### Tool design (the model's UX)

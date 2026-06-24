@@ -43,6 +43,9 @@ for the engineering layer underneath it.
 | [`docs/05-loop-patterns.md`](docs/05-loop-patterns.md) | The loop catalog (L1/L2/L3) and the selection procedure, distilled to text. |
 | [`docs/06-failure-modes.md`](docs/06-failure-modes.md) | Semantic drift, context rot, approval fatigue, and how the harness prevents each. |
 | [`docs/07-lifecycle-and-artifacts.md`](docs/07-lifecycle-and-artifacts.md) | Long-horizon lifecycle: Plan.md/Implement.md, hibernate-and-wake, cross-context handoff. |
+| [`docs/08-self-improvement-loop.md`](docs/08-self-improvement-loop.md) | The traces→evals→handoff flywheel that keeps an agent system (and this repo) improving. |
+| [`SELF-IMPROVEMENT.md`](SELF-IMPROVEMENT.md) | The weekly maintenance runbook this repo runs on itself. |
+| [`CHANGELOG.md`](CHANGELOG.md) | Dated, source-cited record of every change. |
 | [`templates/`](templates/) | Copy-paste harness artifacts: `PLAN.md`, `IMPLEMENT.md`, `loop-spec.md`. |
 | [`references.md`](references.md) | Every primary source, with links. |
 | [`reference/ai-loops-reference.html`](reference/ai-loops-reference.html) | The original visual loop reference (open in a browser). |
@@ -58,6 +61,13 @@ for the engineering layer underneath it.
 > **no model swap**. This repo is a curated, agent-readable encoding of those levers.
 
 See [`references.md`](references.md) for the evidence behind every claim.
+
+## This repo improves itself
+
+It's maintained by its own flywheel. A weekly cycle ([`SELF-IMPROVEMENT.md`](SELF-IMPROVEMENT.md))
+scans authoritative lab sources (Anthropic, OpenAI, Google, Microsoft, Meta) and new research,
+gates candidates through freshness/authority evals, and opens a PR with ranked, source-cited
+improvements. History lives in [`CHANGELOG.md`](CHANGELOG.md).
 
 ## License
 

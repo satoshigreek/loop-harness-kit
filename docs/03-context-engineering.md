@@ -42,6 +42,27 @@ threshold to an agent-triggered tool call (compress between tasks, before consum
 inputs) keeps the compression unit *semantically coherent* — the agent decides what knowledge
 is worth keeping, yielding ~22% token reduction with no accuracy loss (arXiv:2601.07190).
 
+## Anthropic's named toolkit (the canonical vocabulary)
+
+Anthropic's *Effective Context Engineering for AI Agents* names the techniques and frames the
+goal precisely: find **"the smallest possible set of high-signal tokens that maximize the
+likelihood of some desired outcome."** Every token spent depletes a finite **attention
+budget**, and accuracy falls as the window grows (context rot). The toolkit:
+
+| Technique | What it is | When to reach for it |
+|---|---|---|
+| **Compaction** | Summarize history, reinitialize with a condensed version | Approaching the window limit on an extended task |
+| **Structured note-taking** (agentic memory) | Agent persists progress to external storage and re-reads it | Iterative work with clear milestones |
+| **Sub-agent architectures** | Specialized agents work in clean windows; a coordinator synthesizes | Complex research / parallel exploration |
+| **Just-in-time retrieval** | Keep lightweight identifiers (paths, queries); load data at runtime via tools | Default — mirrors human memory, avoids pre-loading |
+| **Hybrid retrieval** | Pre-compute some data for speed + explore the rest autonomously | Less-dynamic domains (legal, finance) |
+| **Tool-result clearing** | Drop raw tool outputs from history once consumed | The "safest, lightest-touch form of compaction" |
+
+A guiding trend worth internalizing: **smarter models need less prescriptive context
+engineering.** As capability rises, bias toward giving the agent autonomy and lightweight
+pointers rather than exhaustively pre-curated context (this is the *expiry principle*
+([`00-foundations.md`](00-foundations.md)) applied to context).
+
 ## Retrieval is a tool call, not a preprocessing dump
 
 The architectural decision that matters most: **do not inject everything upfront.** Expose
