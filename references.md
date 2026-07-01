@@ -173,6 +173,24 @@ June 2026.
 - *An Update on Recent Claude Code Quality Reports* (harness-regression postmortem) — Anthropic.
   <https://www.anthropic.com/engineering/april-23-postmortem>
 
+## §Model-Specific Prompting
+
+- *Prompting Claude Fable 5* (effort, instruction following, long runs, memory, send-to-user
+  tool, scaffolding changes) — Anthropic.
+  <https://platform.claude.com/docs/en/about-claude/models/prompting-claude-fable-5>
+- *Introducing Claude Fable 5 and Claude Mythos 5* (capabilities, API changes, adaptive
+  thinking, `refusal` stop reason) — Anthropic.
+  <https://platform.claude.com/docs/en/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5>
+- *Prompting best practices* (cross-model prompting) — Anthropic.
+  <https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices>
+- *Effort* (intelligence / latency / cost control) — Claude API docs.
+  <https://platform.claude.com/docs/en/build-with-claude/effort>
+- *Refusals and fallback* (`refusal` stop reason; `reasoning_extraction`; fallback to Opus
+  4.8) — Claude API docs.
+  <https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback>
+- *Adaptive thinking* (structured `thinking` blocks) — Claude API docs.
+  <https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking>
+
 ## Loop-pattern foundational papers
 
 - Self-Consistency — Wang et al. 2022. <https://arxiv.org/abs/2203.11171>

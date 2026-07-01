@@ -1,5 +1,5 @@
 ---
-last_updated: 2026-06-24
+last_updated: 2026-07-01
 owner: satoshigreek
 scope: LLM-facing operating manual for loop / harness / environment engineering
 reviewed_by: Claude (Opus 4.8)
@@ -191,3 +191,24 @@ tool policies, output requirements, checks) — not just the prompt. Start with 
 loop** (human approves changes); earn **deeper automation** only once the eval gate has proven
 it catches regressions. Detail: `docs/08-self-improvement-loop.md`. This repo maintains itself
 on exactly this loop — see `SELF-IMPROVEMENT.md`.
+
+---
+
+## 10. Match the harness to the model
+
+The harness levers above are model-agnostic, but their *tuning* is not. When the model
+underneath is **Claude Fable 5** or **Claude Mythos 5**, several defaults shift:
+
+- **Effort is the primary dial.** Use `high` by default, `xhigh` for the hardest work, `medium`
+  / `low` for routine tasks — lower effort on Fable 5 often still beats prior models at `xhigh`.
+- **Steer with brief instructions, not enumerations.** Instruction-following is strong enough
+  that one short rule (brevity, scope, checkpointing) replaces a long list of named behaviors.
+- **Expect longer turns.** Individual requests can run for many minutes and autonomous runs for
+  hours; set client timeouts and prefer asynchronous check-ins over blocking.
+- **Ground progress claims and state boundaries** to suppress the rare fabricated-status,
+  unrequested-action, and early-stopping behaviors.
+- **Lean on parallel subagents and a memory file**, and **don't ask the model to echo its
+  reasoning as response text** (it can trigger a `reasoning_extraction` refusal).
+
+Full model-specific playbook, with copy-paste prompt snippets and a `send_to_user` tool
+definition: `docs/09-prompting-fable-5.md`.
