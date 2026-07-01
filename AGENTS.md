@@ -11,6 +11,12 @@ reviewed_by: Claude (Opus 4.8)
 > multi-step work, and keep it in context. It tells you how to pick a feedback loop,
 > structure your own harness, and avoid the failure modes that wreck long-horizon runs.
 > The longer docs in `docs/` expand each section; the cited sources live in `references.md`.
+>
+> **How to read this.** §0–§7 are the operating core — keep them in context for any multi-step
+> run. §8 (long-horizon work), §9 (the improvement flywheel), §10 (model-specific tuning), and
+> the `docs/` deep-dives are **consult-on-demand**: pull them in when the task calls for them,
+> don't preload everything. Loading what you won't use is exactly the context bloat §4 warns
+> against.
 
 ---
 
@@ -34,6 +40,10 @@ feedback signal**.
    environment ground truth (tests, compiler, tool output) → retrieved evidence → an
    independent critic/judge → an explicit rubric → bare self-critique. The stronger the
    signal, the more the loop improves *correctness* rather than just polish.
+   **Quick check to find yours:** is a test suite, type check, or CI already wired into the
+   workflow? Use it. If not, can you write a short rubric or point a fresh-context critic at
+   the output? Use that. If no signal exists and the task is verifiable, *create* one before
+   looping (see §5) — a loop with no fresh signal only polishes confidence.
 3. **Verifiable or judgment?** Verifiable → lean on tools/tests. Subjective → write a rubric
    or use a critic/persona.
 4. **One actor or several?** One model iterating → simple refinement loop. Multiple roles
@@ -80,6 +90,14 @@ is missing you don't have a harness, you have a tool wrapper:
 2. **A tool interface** — well-named tools, typed schemas, informative error surfaces.
 3. **Context management** — curate what enters the window; compact before you hit the wall.
 4. **Control mechanisms** — permissions, gates, hooks, loop-detection, stopping rules.
+
+**Route the verify stage to one of four outcomes — by state, not mood.** Verification is a
+graded decision, not pass/fail (`docs/01-the-agent-loop.md`): **Accept** (sensors pass, in
+scope → commit/advance); **Revise** (minor, self-correctable → loop again with the failure as
+input); **Escalate** (ambiguous or a judgment call → hand to a human or stronger model);
+**Rollback** (unsafe or off-track → revert to the last good state). Rollback only exists if you
+**checkpointed a revertible state first** (a commit, a feature flag) — so create one before any
+irreversible step.
 
 Design heuristics:
 
@@ -158,8 +176,9 @@ More: `docs/06-failure-modes.md`.
    an independent critic, assume the loop is polishing confidence, not correctness.
 2. **Isolate the critic.** A fresh-context reviewer or distinct model catches far more than
    same-context self-praise.
-3. **Cap iterations (3–4)** and stop the moment evals pass. More rounds rarely help; cost
-   compounds.
+3. **Cap iterations (3–4)** and stop the moment evals pass. If you hit the cap and evals still
+   fail, don't re-run the same approach — **replan** (change the approach) or **escalate** to a
+   human / stronger model. Re-iterating an approach that isn't converging only compounds cost.
 4. **Gate irreversible actions** behind a checkpoint — before writes, sends, deploys, or
    anything you can't undo.
 5. **Re-anchor to intent** at the top of every iteration to defeat semantic drift.
