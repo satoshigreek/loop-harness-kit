@@ -1,5 +1,5 @@
 ---
-last_updated: 2026-06-24
+last_updated: 2026-07-01
 owner: satoshigreek
 scope: maintenance protocol for loop-harness-kit
 reviewed_by: Claude (Opus 4.8)

@@ -3,6 +3,36 @@
 All notable changes to this kit. Each entry cites the authoritative source behind it.
 Maintained via [`SELF-IMPROVEMENT.md`](SELF-IMPROVEMENT.md).
 
+## 2026-07-01 — Weekly refresh (cycle #2): scaling & evolving the harness
+
+Second run of the [`SELF-IMPROVEMENT.md`](SELF-IMPROVEMENT.md) protocol. Scanned Anthropic /
+OpenAI / Google / arXiv `cs.AI`+`cs.SE`. Three arXiv candidates passed the full eval gate
+(authority + freshness + non-regression + link integrity + on-purpose); every title was
+verified against the abstract before citing. Two lab posts were dropped on **freshness** (OpenAI
+*Unlocking the Codex harness*, Feb 2026; Google I/O ADK/A2A, May 2025 — both predate the last
+refresh). Ranked most-impactful first.
+
+### Changed
+- **`docs/04` — Life-Harness upgraded to its paper**: the existing bare-repo citation now cites
+  *Adapting the Interface, Not the Model: Runtime Harness Adaptation for Deterministic LLM
+  Agents* (arXiv:2605.22166) with the quantified result — **116/126 model–environment settings
+  improved, avg +88.5% relative** across 18 backbones, a harness frozen for eval and transferred
+  from a single 4B model to 17 others. Reinforces "many agent failures are interface mismatches."
+- **`docs/08` — HarnessX added to the flywheel**: *HarnessX: A Composable, Adaptive, and
+  Evolvable Agent Harness Foundry* (arXiv:2606.14249) — typed harness primitives composed by a
+  substitution algebra, evolved by the trace-driven **AEGIS** engine into both harness edits and
+  model-training signal (closing the harness↔model loop). **+14.5% avg, up to +44%** across five
+  benchmarks; automates the "optimize structure, not vibes" lesson.
+- **`docs/00` — "scaling the harness" thesis**: *From Model Scaling to System Scaling: Scaling
+  the Harness in Agentic AI* (arXiv:2605.26112) — the six-component harness (model, memory
+  substrate, context constructor, skill routing, orchestration, verification-and-governance) and
+  the call for harness-level benchmarks. Reinforces `docs/00`'s binding-constraint thesis.
+- `references.md` — added the two new papers under §Foundations and §Self-Improvement; the
+  §Environment Life-Harness entry upgraded from a bare GitHub link to the arXiv paper + numbers.
+- `index.html` — three new UML cards (Harness / Environment / Self-improvement) with real
+  mechanism diagrams; hero paper count **29 → 32**.
+- `SELF-IMPROVEMENT.md` — `last_updated` bumped to 2026-07-01.
+
 ## 2026-07-01 — Model-specific prompting: Claude Fable 5
 
 ### Added

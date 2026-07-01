@@ -77,6 +77,15 @@ And because harness scores are confounded with the harness itself, measure on a 
 benchmark: *Harness-Bench* (arXiv:2605.27922) shows a score reflects "not only what the model
 can infer, but what the harness enables it to observe, modify, recover from, and verify."
 
+The next step turns this loop into a *foundry*. **HarnessX** (arXiv:2606.14249) makes the
+harness itself composable and evolvable: typed harness primitives are assembled by a
+**substitution algebra**, then a trace-driven multi-agent engine (**AEGIS**) distills execution
+trajectories into both harness edits *and* model-training signal — closing the harness↔model
+loop rather than optimizing either half alone. Across five benchmarks (ALFWorld, GAIA, WebShop,
+τ³-Bench, SWE-bench Verified) it adds **+14.5% on average (up to +44%), with the largest gains
+where baselines are weakest** — the same "optimize structure, not vibes" lesson, now automated
+end to end.
+
 ## Two trust levels
 
 | Level | Flow | Use when |
