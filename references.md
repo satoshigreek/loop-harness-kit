@@ -45,6 +45,10 @@ June 2026.
   <https://arxiv.org/abs/2604.18071>
 - *2026 Agentic Coding Trends Report* — Anthropic.
   <https://resources.anthropic.com/hubfs/2026%20Agentic%20Coding%20Trends%20Report.pdf>
+- *From Model Scaling to System Scaling: Scaling the Harness in Agentic AI* (the six-component
+  harness — model, memory substrate, context constructor, skill routing, orchestration,
+  verification-and-governance; harness-level benchmarks) — arXiv:2605.26112.
+  <https://arxiv.org/abs/2605.26112>
 - *Harness Engineering: How to Build Reliable AI Agents…* — deepset.
   <https://www.deepset.ai/blog/harness-engineering>
 
@@ -112,6 +116,10 @@ June 2026.
   Terminal-Bench 2 69.7% → 77.0%) — arXiv:2604.25850. <https://arxiv.org/abs/2604.25850>
 - *Harness-Bench: Measuring Harness Effects across Models in Realistic Agent Workflows* —
   arXiv:2605.27922. <https://arxiv.org/abs/2605.27922>
+- *HarnessX: A Composable, Adaptive, and Evolvable Agent Harness Foundry* (typed harness
+  primitives + substitution algebra; AEGIS trace-driven evolution closing the harness↔model
+  loop; **+14.5% avg, up to +44%** across five benchmarks) — arXiv:2606.14249.
+  <https://arxiv.org/abs/2606.14249>
 - *Build an Agent Improvement Loop with Traces, Evals, and Codex* — OpenAI cookbook.
   <https://developers.openai.com/cookbook/examples/agents_sdk/agent_improvement_loop>
 - *The next evolution of the Agents SDK* — OpenAI.
@@ -146,7 +154,10 @@ June 2026.
 - *Context Engineering for Reliable AI Agents: Lessons from Building Azure SRE Agent* —
   Microsoft (45% → 75%).
   <https://techcommunity.microsoft.com/blog/appsonazureblog/context-engineering-lessons-from-building-azure-sre-agent/4481200/>
-- *Life-Harness* (18-backbone transfer). <https://github.com/Tianshi-Xu/Life-Harness>
+- *Adapting the Interface, Not the Model: Runtime Harness Adaptation for Deterministic LLM
+  Agents* (Life-Harness; environment-contract layers; **116/126 settings, avg +88.5%**,
+  18-backbone transfer) — arXiv:2605.22166. <https://arxiv.org/abs/2605.22166> ·
+  [code](https://github.com/Tianshi-Xu/Life-Harness)
 - *Making Agent-Friendly Pages with Content Negotiation* — Vercel.
   <https://vercel.com/blog/making-agent-friendly-pages-with-content-negotiation>
 - *Harness Engineering: Structured Workflows for AI-Assisted Development* — Red Hat.

@@ -139,7 +139,7 @@
     <a class="btn ghost" href="reference/ai-loops-reference.html">Open the visual loop catalog →</a>
   </div>
   <div class="stats">
-    <div class="stat"><div class="n">29</div><div class="l">papers, each with UML</div></div>
+    <div class="stat"><div class="n">32</div><div class="l">papers, each with UML</div></div>
     <div class="stat"><div class="n">3</div><div class="l">engineering layers</div></div>
     <div class="stat"><div class="n">+20</div><div class="l">ranking positions, harness-only</div></div>
     <div class="stat"><div class="n">weekly</div><div class="l">self-improvement cycle</div></div>
@@ -288,6 +288,23 @@ stateDiagram-v2
         <p class="take"><b>Takeaway:</b> a loop that can roll back contains the blast radius.</p>
       </article>
 
+      <article class="paper">
+        <div class="ptop"><span class="tag" style="background:var(--c-harness)">Harness</span><a class="aid" href="https://arxiv.org/abs/2605.26112">arXiv:2605.26112</a></div>
+        <h4>From Model Scaling to System Scaling</h4>
+        <p class="what">The next bottleneck is <i>scaling the harness</i>: agent behavior emerges from six interacting components, not the model alone.</p>
+        <div class="mermaid">
+flowchart TD
+  M(("Foundation<br/>model")) --> H{"Agent harness"}
+  Mem["Memory substrate"] --> H
+  Ctx["Context constructor"] --> H
+  Sk["Skill routing"] --> H
+  Orch["Orchestration loop"] --> H
+  Gov["Verification and governance"] --> H
+  H --> B((("Long-horizon<br/>behavior")))
+        </div>
+        <p class="take"><b>Takeaway:</b> optimize the system around the model, not only the model.</p>
+      </article>
+
     </div>
   </div>
 
@@ -311,6 +328,27 @@ flowchart TD
   Q -->|yes| D((("discovery")))
         </div>
         <p class="take"><b>Takeaway:</b> make state legible and feedback honest before reaching for a bigger model.</p>
+      </article>
+
+      <article class="paper">
+        <div class="ptop"><span class="tag" style="background:var(--c-env)">Environment</span><a class="aid" href="https://arxiv.org/abs/2605.22166">arXiv:2605.22166</a></div>
+        <h4>Life-Harness: Adapt the Interface, Not the Model</h4>
+        <p class="what">A lifecycle-aware runtime harness improves frozen agents by fixing model-environment interface mismatches — no weight updates.</p>
+        <div class="mermaid">
+flowchart TD
+  Tr["Training trajectories"] --> F["Recurring interface failures"]
+  F --> I["Reusable interventions"]
+  I --> C1["Environment contracts"]
+  I --> C2["Procedural skills"]
+  I --> C3["Action realization"]
+  I --> C4["Trajectory regulation"]
+  C1 --> Fz["Frozen harness"]
+  C2 --> Fz
+  C3 --> Fz
+  C4 --> Fz
+  Fz --> E((("+88.5% avg<br/>over 18 backbones")))
+        </div>
+        <p class="take"><b>Takeaway:</b> many agent failures are interface mismatches, not reasoning gaps.</p>
       </article>
 
     </div>
@@ -445,6 +483,23 @@ flowchart TD
   Obs --> B
         </div>
         <p class="take"><b>Takeaway:</b> evals are regression gates, not afterthoughts.</p>
+      </article>
+
+      <article class="paper">
+        <div class="ptop"><span class="tag" style="background:var(--c-improve)">Self-improve</span><a class="aid" href="https://arxiv.org/abs/2606.14249">arXiv:2606.14249</a></div>
+        <h4>HarnessX: A Harness Foundry</h4>
+        <p class="what">Composable, adaptive, evolvable harnesses: typed primitives composed by a substitution algebra and evolved from execution traces.</p>
+        <div class="mermaid">
+flowchart TD
+  P["Typed harness primitives"] --> SA["Substitution algebra"]
+  SA --> Hn["Assembled harness"]
+  Hn --> Ex["Execution traces"]
+  Ex --> AE{"AEGIS evolution engine"}
+  AE --> Up["Harness updates"]
+  AE --> Sig["Model training signal"]
+  Up --> Hn
+        </div>
+        <p class="take"><b>Takeaway:</b> +14.5% avg (up to +44%) by evolving the interface from execution feedback.</p>
       </article>
 
     </div>

@@ -65,6 +65,16 @@ harness has **four necessary and sufficient elements** — an agent loop, a tool
 context management, and control mechanisms. Miss one and you have a generator, a guardrail, or
 a tool wrapper — not a harness. Detail in [`02-harness-engineering.md`](02-harness-engineering.md).
 
+**Scaling the harness** (arXiv:2605.26112): as raw model scaling plateaus, the next lever is
+*system scaling* — treating the structured execution layer around a model as a first-class
+object of design, evaluation, and optimization. Agent performance emerges from six interacting
+components — the foundation model, a **memory substrate**, a **context constructor**, a
+**skill-routing layer**, the **orchestration loop**, and a **verification-and-governance
+layer** — with three standing bottlenecks: context governance, trustworthy memory, and dynamic
+skill routing. The consequence for measurement: score harnesses on trajectory quality, memory
+hygiene, context efficiency, verification cost, and safe evolution over time — not just
+one-shot task success.
+
 **The expiry principle** (Anthropic): every harness component exists because the model can't
 do something *yet*. As models improve, some scaffolding becomes unnecessary. Design knowing
 your scaffolding has a shelf life — don't hard-code around limitations you'll want to remove.

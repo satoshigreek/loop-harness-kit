@@ -56,10 +56,14 @@ temporal awareness is orthogonal to reasoning capability and must be supplied, n
 
 The environment contract should be explicit and improvable, not implicit. Patterns:
 
-- **Environment contract layers** (`Life-Harness`): an explicit environment contract +
-  procedural skills + action realization + trajectory regulation. Harness-side adaptation of
-  the model↔environment interface transferred across **18 model backbones** — strong evidence
-  that many "agent failures" are interface mismatches, not reasoning deficits.
+- **Environment contract layers** (*Life-Harness*, arXiv:2605.22166): convert recurring
+  interaction failures from training trajectories into reusable interventions across four
+  layers — an explicit environment contract + procedural skills + action realization +
+  trajectory regulation — then **freeze the harness for evaluation** (no weight updates). On
+  seven deterministic environments (τ-bench, τ²-bench, AgentBench) it improved **116 of 126
+  model–environment settings across 18 backbones (avg +88.5% relative)**, and harnesses evolved
+  from a single 4B model's trajectories transferred to 17 other models — strong evidence that
+  many "agent failures" are interface mismatches, not reasoning deficits.
 - **Agent-friendly surfaces**: serve `text/markdown` to agents via content negotiation
   (Vercel) so the environment hands the agent clean inputs instead of HTML boilerplate.
 - **Entropy management**: schedule periodic agents that repair documentation/state drift in the
