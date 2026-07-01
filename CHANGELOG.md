@@ -3,6 +3,24 @@
 All notable changes to this kit. Each entry cites the authoritative source behind it.
 Maintained via [`SELF-IMPROVEMENT.md`](SELF-IMPROVEMENT.md).
 
+## 2026-07-01 — Model-specific prompting: Claude Fable 5
+
+### Added
+- **`docs/09-prompting-fable-5.md`** — model-specific prompting and scaffolding guide for
+  Claude Fable 5 / Mythos 5: effort as the primary dial (`high` default, `xhigh`/`medium`/`low`
+  as needed), brief-instruction steering, longer turns by default, grounding progress claims,
+  stating boundaries, parallel subagents, a memory-file system, early-stopping and
+  context-budget mitigations, a readability addendum, a `send_to_user` tool definition, and the
+  `reasoning_extraction` refusal caveat. Cross-linked to `docs/03`, `05`, `06`, `08`. Source:
+  Anthropic, *Prompting Claude Fable 5*.
+- **`AGENTS.md` §10 — Match the harness to the model** — condensed Fable 5 tuning pointers.
+
+### Changed
+- `README.md` — added `docs/09` to the "What's inside" table.
+- `references.md` — new **§Model-Specific Prompting** (Fable 5 / Mythos 5 guides, effort,
+  refusals-and-fallback, adaptive thinking).
+- `AGENTS.md` — `last_updated` bumped to 2026-07-01.
+
 ## 2026-06-24 — Weekly refresh (cycle #1)
 
 First run of the [`SELF-IMPROVEMENT.md`](SELF-IMPROVEMENT.md) protocol. Scanned Anthropic /

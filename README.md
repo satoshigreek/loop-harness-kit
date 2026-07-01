@@ -46,6 +46,7 @@ for the engineering layer underneath it.
 | [`docs/06-failure-modes.md`](docs/06-failure-modes.md) | Semantic drift, context rot, approval fatigue, and how the harness prevents each. |
 | [`docs/07-lifecycle-and-artifacts.md`](docs/07-lifecycle-and-artifacts.md) | Long-horizon lifecycle: Plan.md/Implement.md, hibernate-and-wake, cross-context handoff. |
 | [`docs/08-self-improvement-loop.md`](docs/08-self-improvement-loop.md) | The traces→evals→handoff flywheel that keeps an agent system (and this repo) improving. |
+| [`docs/09-prompting-fable-5.md`](docs/09-prompting-fable-5.md) | Model-specific prompting for Claude Fable 5 / Mythos 5: effort, instruction following, long runs, memory, and scaffolding changes. |
 | [`SELF-IMPROVEMENT.md`](SELF-IMPROVEMENT.md) | The weekly maintenance runbook this repo runs on itself. |
 | [`CHANGELOG.md`](CHANGELOG.md) | Dated, source-cited record of every change. |
 | [`templates/`](templates/) | Copy-paste harness artifacts: `PLAN.md`, `IMPLEMENT.md`, `loop-spec.md`. |
